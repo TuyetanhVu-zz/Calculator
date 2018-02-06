@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     var numberOnScreen: Double = 0
     var previousNumber:Double = 0
     var calculateMath = false
+    var operation = 0
     
     @IBOutlet weak var label: UILabel!
     @IBAction func numbers(_ sender: UIButton) {
@@ -38,22 +39,51 @@ class ViewController: UIViewController {
             previousNumber = Double(label.text!)!
             if sender.tag == 12 //Divide button
             {
-                
+                label.text = "/"
             }
             else if sender.tag == 13 //Multiply button
             {
-                
+                label.text = "x"
             }
             else if sender.tag == 14 //Subtraction button
             {
-                
+                label.text = "-"
             }
             else if sender.tag == 15 //Addition button
             {
                 label.text = "+"
             }
             
+            operation = sender.tag
             calculateMath = true
+        }
+        else if sender.tag == 16{
+            if operation == 12 //Divide
+            {
+                label.text = String(previousNumber / numberOnScreen)
+
+            }
+            else if operation == 13 //Multiply
+            {
+                label.text = String(previousNumber * numberOnScreen)
+                
+            }
+            else if operation == 14 //Subtract
+            {
+                label.text = String(previousNumber - numberOnScreen)
+
+            }
+            else if operation == 15 //Add
+            {
+                label.text = String(previousNumber + numberOnScreen)
+            }
+        }
+        else if sender.tag == 11{
+            label.text = ""
+            previousNumber = 0
+            numberOnScreen = 0
+            operation = 0
+            
         }
     }
     
